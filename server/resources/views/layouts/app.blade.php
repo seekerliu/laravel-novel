@@ -36,7 +36,9 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        &nbsp;
+                        @foreach($categories as $category)
+                            <li><a href="{{ route('novels.index', ['category'=>$category->alias]) }}">{{$category->name}}</a></li>
+                        @endforeach
                     </ul>
 
                     <!-- Right Side Of Navbar -->

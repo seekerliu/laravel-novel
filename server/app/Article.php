@@ -4,6 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\Article
+ *
+ * @property-read \App\Novel $novel
+ * @mixin \Eloquent
+ */
 class Article extends Model
 {
     protected $fillable = [

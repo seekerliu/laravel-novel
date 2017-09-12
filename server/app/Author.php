@@ -4,6 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\Author
+ *
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Article[] $articles
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Novel[] $novels
+ * @mixin \Eloquent
+ */
 class Author extends Model
 {
     protected $fillable = [

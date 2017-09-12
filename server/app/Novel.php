@@ -4,6 +4,15 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\Novel
+ *
+ * @property-read \App\Author $author
+ * @property-read \App\Category $category
+ * @property-read mixed $status
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Tag[] $tags
+ * @mixin \Eloquent
+ */
 class Novel extends Model
 {
     protected $fillable = [

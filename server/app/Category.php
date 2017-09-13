@@ -20,4 +20,9 @@ class Category extends Model
     {
         return $this->hasMany('App\Novel');
     }
+
+    public function findFirstByName($name)
+    {
+        return $this->where('name', $name)->first();
+    }
 }

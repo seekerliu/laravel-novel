@@ -17,6 +17,11 @@ class ComposerServiceProvider extends ServiceProvider
         View::composer(
             '*', 'App\Http\ViewComposers\CategoryComposer'
         );
+
+        View::composer(
+            ['home', 'novels.index'],
+            'App\Http\ViewComposers\NovelComposer'
+        );
     }
 
     /**

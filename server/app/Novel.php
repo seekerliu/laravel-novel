@@ -57,6 +57,13 @@ class Novel extends Model
         return $this->with('author')->orderBy('hot', 'desc')->take(8)->get();
     }
 
+    public function getByCategory($name)
+    {
+        return $this->whereHas('category',function($query) use ($name){
+            $query->where('name', $name);
+        })->paginate();
+    }
+
     public function getStatusAttribute()
     {
         if($this->isFinished) {

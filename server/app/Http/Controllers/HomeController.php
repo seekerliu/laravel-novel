@@ -28,8 +28,7 @@ class HomeController extends Controller
     public function index()
     {
         $recommended = $this->novel->recommended();
-        $hotRank = $this->novel->hotRank();
 
-        return view('home')->with(compact('recommended', 'hotRank'));
+        return view('home')->with(compact('recommended'));
     }
 }

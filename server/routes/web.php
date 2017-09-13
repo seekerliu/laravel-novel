@@ -21,6 +21,14 @@ Route::middleware('auth')->group(function(){
     Route::get('/home', 'HomeController@index')->name('home');
 
     Route::prefix('novel')->group(function(){
-        Route::get('/{category?}', 'NovelController@index')->name('novels.index');
+        Route::get('/{category?}', 'NovelController@index')
+            ->name('novels.index')
+            ->where('category', '[A-Za-z]+');
+        Route::get('/{novel}', 'NovelController@show')->name('novels.show');
+    });
+
+    Route::prefix('author')->group(function(){
+        Route::get('/', 'AuthorController@index')->name('authors.index');
+        Route::get('/{author}', 'AuthorController@show')->name('authors.show');
     });
 });

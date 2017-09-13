@@ -39,6 +39,24 @@ class Novel extends Model
         return $this->belongsToMany('App\Tag');
     }
 
+    /**
+     * 热门推荐
+     * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Support\Collection|static[]
+     */
+    public function recommended()
+    {
+        return $this->inRandomOrder()->take(8)->get();
+    }
+
+    /**
+     * 热门排行
+     * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Support\Collection|static[]
+     */
+    public function hotRank()
+    {
+        return $this->with('author')->orderBy('hot', 'desc')->take(8)->get();
+    }
+
     public function getStatusAttribute()
     {
         if($this->isFinished) {

@@ -2,18 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Novel;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
+    private $novel;
+
     /**
      * Create a new controller instance.
      *
+     * @param Novel $novel
      * @return void
      */
-    public function __construct()
+    public function __construct(Novel $novel)
     {
-
+        $this->novel = $novel;
     }
 
     /**
@@ -23,6 +27,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $recommended = $this->novel->recommended();
+        $hotRank = $this->novel->hotRank();
+
+        return view('home')->with(compact('recommended', 'hotRank'));
     }
 }

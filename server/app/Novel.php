@@ -39,6 +39,11 @@ class Novel extends Model
         return $this->belongsToMany('App\Tag');
     }
 
+    public function articles()
+    {
+        return $this->hasMany('App\Article');
+    }
+
     /**
      * 热门推荐
      * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Support\Collection|static[]
@@ -57,9 +62,14 @@ class Novel extends Model
         return $this->with('author')->orderBy('hot', 'desc')->take(8)->get();
     }
 
+    /**
+     * 通过分类获取小说
+     * @param $name
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+     */
     public function getByCategory($name)
     {
-        return $this->whereHas('category',function($query) use ($name){
+        return $this->whereHas('category',function($query) use ($name) {
             $query->where('name', $name);
         })->paginate();
     }
@@ -72,4 +82,5 @@ class Novel extends Model
 
         return '连载中';
     }
+
 }

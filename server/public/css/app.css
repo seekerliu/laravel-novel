@@ -8548,6 +8548,7 @@ h5 {
 .box {
   display: inline-block;
   margin-bottom: 10px;
+  width: 100%;
 }
 
 .detail-box .content,

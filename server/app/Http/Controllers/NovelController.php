@@ -34,4 +34,10 @@ class NovelController extends Controller
 
         return view('novels.index')->with(compact('items', 'category'));
     }
+
+    public function show($id)
+    {
+        $novel = $this->novel->find($id);
+        return view('novels.show')->with(compact('novel'));
+    }
 }

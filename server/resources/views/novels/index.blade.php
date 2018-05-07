@@ -25,7 +25,7 @@
                 </div>
             </div>
 
-            <div class="l-right box col-md-4">
+            <div class="l-right col-md-4">
                 <div class="panel panel-default">
                     <div class="panel-heading">排行热榜</div>
 

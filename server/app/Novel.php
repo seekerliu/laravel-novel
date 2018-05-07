@@ -2,7 +2,8 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use Jenssegers\Mongodb\Eloquent\Model as Model;
+use Jenssegers\Mongodb\Eloquent\HybridRelations;
 
 /**
  * App\Novel
@@ -15,6 +16,9 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Novel extends Model
 {
+    use HybridRelations;
+
+    /* Conventions */
     protected $fillable = [
         'author_id', 'category_id', 'name', 'description', 'cover',
         'is_finished',
@@ -24,6 +28,7 @@ class Novel extends Model
         'is_finished' => 'boolean',
     ];
 
+    /* Relationships */
     public function author()
     {
         return $this->belongsTo('App\Author');
@@ -44,13 +49,20 @@ class Novel extends Model
         return $this->hasMany('App\Article');
     }
 
+    /* Accessors & Mutators */
+    public function getStatusAttribute()
+    {
+        return $this->isFinished ? '已完结' : '连载中';
+    }
+
+    /* Business Logic */
     /**
      * 热门推荐
      * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Support\Collection|static[]
      */
     public function recommended()
     {
-        return $this->inRandomOrder()->take(8)->get();
+        return $this->take(8)->get();
     }
 
     /**
@@ -73,14 +85,4 @@ class Novel extends Model
             $query->where('name', $name);
         })->paginate();
     }
-
-    public function getStatusAttribute()
-    {
-        if($this->isFinished) {
-            return '已完结';
-        }
-
-        return '连载中';
-    }
-
 }

@@ -23,12 +23,20 @@
                                         <p>热度: {{$novel->hot}}</p>
                                     </div>
                                     <div class="d-s-col d-s-col-noright">
-                                        <p>最新章节: <a id="readNew" href="#" title="第六百二十二章 兄弟重逢">第六百二十二章 兄弟重逢</a></p>
+                                        <p>最新章节:
+                                            @if($latest)
+                                                <a id="readNew" href="{{route('articles.show', $latest->id)}}" title="{{$latest->name}}">{{$latest->name}}</a>
+                                            @endif
+                                        </p>
                                         <p>更新时间: 2017-09-19 23:33:19</p>
-                                        <p>上次看到: <a id="readLast" href="#" title="第六百二十二章 兄弟重逢">第六百二十二章 兄弟重逢</a></p>
+                                        <p>上次看到:
+                                            {{--<a id="readLast" href="#" title="第六百二十二章 兄弟重逢">第六百二十二章 兄弟重逢</a>--}}
+                                        </p>
                                     </div>
                                     <div class="clr"></div>
-                                    <a id="readStart" href="http://shu000.com/books/10838/chapters/41138104" rel="nofollow" class="btn-big" title="第一章 沙漠中的彼岸花">开始阅读</a>
+                                    @if($first)
+                                    <a id="readStart" href="{{route('articles.show', $first->id)}}" rel="nofollow" class="btn-big" title="{{$first->name}}">开始阅读</a>
+                                    @endif
                                 </div>
                                 <div class="clr"></div>
                                 <div class="desc-story" style="padding-top:10px;">
@@ -43,7 +51,13 @@
                                     <div class="list-chap-wrap">
                                         <div class="list-chap" id="_pchapter">
                                             <ul>
-                                                <li data-id="41138104"><p><a title="第一章 沙漠中的彼岸花" href="http://shu000.com/books/10838/chapters/41138104">第一章 沙漠中的彼岸花</a></p></li>
+                                                @foreach($articles as $article)
+                                                <li data-id="{{$article->id}}">
+                                                    <p>
+                                                        <a title="{{$article->name}}" href="{{route('articles.show', $article->id)}}">{{$article->name}}</a>
+                                                    </p>
+                                                </li>
+                                                @endforeach
                                             </ul>
                                             <div class="clr"></div>
                                         </div>

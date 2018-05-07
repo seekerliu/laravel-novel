@@ -38,6 +38,9 @@ class NovelController extends Controller
     public function show($id)
     {
         $novel = $this->novel->find($id);
-        return view('novels.show')->with(compact('novel'));
+        $articles = $novel->articles;
+        $first = $articles ? $articles->first() : null;
+        $latest = $articles ? $articles->last() : null;
+        return view('novels.show')->with(compact('novel','articles', 'first', 'latest'));
     }
 }

@@ -3,7 +3,8 @@
 namespace App;
 
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Jenssegers\Mongodb\Auth\User as Authenticatable;
+//use Illuminate\Foundation\Auth\User as Authenticatable;
 
 /**
  * App\User
@@ -21,7 +22,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'test'
     ];
 
     /**
@@ -32,4 +33,15 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function novel()
+    {
+        return $this->hasMany('App\Novel');
+    }
+
+    public function setTestAttribute($value)
+    {
+        $this->attributes['test'] = 'my'. $value;
+    }
+
 }

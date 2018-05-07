@@ -32,6 +32,6 @@ class CreateNovelsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('novels');
+        Schema::drop('novels');
     }
 }

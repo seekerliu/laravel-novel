@@ -26,6 +26,6 @@ class CreateNovelTagTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('novel_tag');
+        Schema::drop('novel_tag');
     }
 }

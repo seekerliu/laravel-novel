@@ -10,9 +10,13 @@
         "fideloper/proxy": "~3.3",
         "laravel/framework": "5.5.*",
         "laravel/tinker": "~1.0",
-        "overtrue/laravel-wechat": "^3.1"
+        "laravelcollective/html": "^5.5",
+        "overtrue/laravel-wechat": "^3.1",
+        "prettus/l5-repository": "^2.6",
+        "jenssegers/mongodb": "3.3.*"
     },
     "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.1",
         "barryvdh/laravel-ide-helper": "^2.4",
         "filp/whoops": "~2.0",
         "fzaninotto/faker": "~1.4",
